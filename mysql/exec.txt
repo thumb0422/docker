@@ -1,0 +1,6 @@
+docker rm  -f mysql1
+
+docker run -p 3306:3306 --name=mysql1 -v /Users/liuchunhua/Documents/share/DB/mysql/conf:/etc/mysql/conf.d -v /Users/liuchunhua/Documents/share/DB/mysql/logs:/logs -v  /Users/liuchunhua/Documents/share/DB/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest
+
+
+docker exec -it mysql1 /bin/bash
