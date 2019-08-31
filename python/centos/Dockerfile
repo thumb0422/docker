@@ -1,5 +1,7 @@
 FROM centos:latest
 
+ENV TZ "Asia/Shanghai"
+
 RUN yum -y update
 RUN yum -y groupinstall "Development Tools"
 RUN yum -y install \ 
@@ -19,26 +21,28 @@ RUN yum -y install \
            wget \
            tar \
            gcc \
-           #zlib \
-           #zlib-devel \
-           #bzip2 \
-           #bzip2-devel \
+           zlib \
+           zlib-devel \
+          # bzip2 \
+           bzip2-devel \
            #readline \
            #readline-devel \
-           sqlite \
+          # sqlite \
            sqlite-devel \
-           #openssl \
-           #openssl-devel \
+           openssl \
+           openssl-devel \
            git \
            gdbm-devel \
-           python-devel 
+           python-devel \
+           vim
 
 WORKDIR /root
 RUN wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
 RUN tar xzvf Python-3.7.4.tgz
 
 WORKDIR ./Python-3.7.4
-RUN ./configure --with-threads
+#RUN ./configure --with-threads
+RUN ./configure
 RUN make install
 
 RUN rm -rf /usr/src/python 
@@ -52,4 +56,8 @@ RUN python get-pip.py
 #RUN pip install readline
 
 WORKDIR /root
+RUN rm -f Python-3.7.4.tgz \
+    && rm -f anaconda-ks.cfg \
+    && rm -rf Python-3.7.4
+EXPOSE 8081
 CMD ["/bin/bash"]
