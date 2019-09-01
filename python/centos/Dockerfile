@@ -34,6 +34,7 @@ RUN yum -y install \
            git \
            gdbm-devel \
            python-devel \
+           net-tools \
            vim
 
 WORKDIR /root
