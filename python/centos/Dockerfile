@@ -61,7 +61,7 @@ RUN rm -f Python-3.7.4.tgz \
     && rm -f anaconda-ks.cfg \
     && rm -rf Python-3.7.4
 
-//Nginx
+#Nginx
 RUN rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
 RUN yum -y install nginx
 
